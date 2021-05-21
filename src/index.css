@@ -19,5 +19,20 @@ code {
 .cell {
   width: 2rem;
   height: 2rem;
-  border: thin solid black;
+  border: thick solid;
+  border-color: rgb(168, 157, 142);
+}
+.cell:hover {
+  background-color: lightgrey;
+}
+.revealed {
+  background-color: rgb(174, 178, 189);
+  color: transparent;
+  border-color: rgb(139, 139, 139);
+}
+.unrevealed {
+  border-top-color: antiquewhite;
+  border-left-color: antiquewhite;
+  border-bottom-color: rgb(201, 190, 175);
+  border-right-color: rgb(201, 190, 175);
 }

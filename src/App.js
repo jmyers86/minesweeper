@@ -5,7 +5,7 @@ function App() {
   const [state, setState] = useState({
     id: null,
     board: [],
-    state: "new",
+    state: "none",
     mines: 0,
   });
 
@@ -21,19 +21,62 @@ function App() {
     setState(game);
   }
 
-  function handleCellClick(x, y) {
-    console.log(x, y);
+  async function handleCellClick(x, y) {
+    const response = await fetch(
+      `https://minesweeper-api.herokuapp.com/games/${state.id}/check?row=${y}&col=${x}`,
+      {
+        method: "POST",
+      }
+    );
+    const game = await response.json();
+    setState(game);
+  }
+
+  async function handleCellRightClick(x, y) {
+    const response = await fetch(
+      `https://minesweeper-api.herokuapp.com/games/${state.id}/flag?row=${y}&col=${x}`,
+      {
+        method: "POST",
+      }
+    );
+    const game = await response.json();
+    setState(game);
+  }
+
+  function getClassName(cell) {
+    switch (cell) {
+      case " ":
+        return "unrevealed";
+      case "_":
+        return "revealed";
+      case "*":
+        return "bomb";
+      case "F":
+        return "flag";
+      case "@":
+        return "flagged-bomb";
+      default:
+        return "number";
+    }
   }
 
   return (
     <div>
       <h1>Minesweeper</h1>
       {state.id ? (
-        <div className="row">
+        <div>
           {state.board.map((row, y) => (
-            <div>
+            <div key={y} className="row">
               {row.map((cell, x) => (
-                <div className="cell" onClick={() => handleCellClick(x, y)}>
+                <div
+                  key={x}
+                  className={`cell ${getClassName(cell)}`}
+                  onClick={() => handleCellClick(x, y)}
+                  onContextMenu={(event) => {
+                    event.preventDefault();
+                    handleCellRightClick(x, y);
+                  }}
+                >
                   {cell}
                 </div>
               ))}
@@ -44,6 +87,10 @@ function App() {
         <button className="new-game" onClick={handleNewGameClick}>
           New Game!
         </button>
+      )}
+      <h2>{state.state}</h2>
+      {(state.state === "lost" || state.state === "won") && (
+        <button onClick={handleNewGameClick}>Play again!</button>
       )}
     </div>
   );
