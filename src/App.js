@@ -60,6 +60,15 @@ function App() {
     }
   }
 
+  function cellIcon(cell) {
+    switch (cell) {
+      case "*":
+        return <i className="fas fa-flag"></i>;
+      default:
+        return "number";
+    }
+  }
+
   return (
     <div>
       <h1>Minesweeper</h1>
