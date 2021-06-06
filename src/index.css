@@ -1,10 +1,19 @@
 body {
-  margin: 0;
+  margin: 3rem;
+  padding: 2rem;
+  justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.background {
+  background-image: linear-gradient(rgb(207, 178, 150), rgb(167, 85, 70));
+  margin: 3rem;
+  padding: 2rem;
+  justify-content: center;
 }
 
 code {
@@ -21,10 +30,12 @@ code {
   height: 2rem;
   border: thick solid;
   border-color: rgb(168, 157, 142);
+  background-color: rgb(233, 210, 181);
 }
 .cell:hover {
   background-color: lightgrey;
 }
+
 .revealed {
   background-color: rgb(174, 178, 189);
   color: transparent;
@@ -35,4 +46,40 @@ code {
   border-left-color: antiquewhite;
   border-bottom-color: rgb(201, 190, 175);
   border-right-color: rgb(201, 190, 175);
+}
+.board {
+  display: grid;
+  justify-content: center;
+  margin: 3rem;
+}
+h1 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: rgb(216, 114, 96);
+  text-shadow: 3px 3px 4px rgb(39, 2, 2);
+  display: flex;
+  justify-content: center;
+}
+h2 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: rgb(255, 219, 213);
+  text-shadow: 3px 3px 4px rgb(39, 2, 2);
+  display: flex;
+  justify-content: center;
+}
+.play-again {
+  display: flex;
+  margin: auto;
+}
+.bomb {
+  background-color: rgb(223, 65, 65);
+  border-top-color: rgb(77, 7, 7);
+  border-left-color: rgb(77, 7, 7);
+  border-bottom-color: rgb(252, 90, 90);
+  border-right-color: rgb(252, 90, 90);
+}
+
+.new-game {
+  margin: auto;
+  display: flex;
+  align-items: center;
 }

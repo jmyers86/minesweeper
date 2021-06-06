@@ -60,20 +60,11 @@ function App() {
     }
   }
 
-  function cellIcon(cell) {
-    switch (cell) {
-      case "*":
-        return <i className="fas fa-flag"></i>;
-      default:
-        return "number";
-    }
-  }
-
   return (
-    <div>
+    <div className="background">
       <h1>Minesweeper</h1>
       {state.id ? (
-        <div>
+        <div className="board">
           {state.board.map((row, y) => (
             <div key={y} className="row">
               {row.map((cell, x) => (
@@ -97,9 +88,11 @@ function App() {
           New Game!
         </button>
       )}
-      <h2>{state.state}</h2>
+      <h2 className="status">{state.state}</h2>
       {(state.state === "lost" || state.state === "won") && (
-        <button onClick={handleNewGameClick}>Play again!</button>
+        <button className="play-again" onClick={handleNewGameClick}>
+          Play again!
+        </button>
       )}
     </div>
   );
